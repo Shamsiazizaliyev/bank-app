@@ -1,0 +1,39 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2024-03-26-01
+      author: shemsi
+      changes:
+        - createTable:
+            tableName: accounts
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                  autoIncrement: true
+              - column:
+                  name: account_number
+                  type: VARCHAR
+              - column:
+                  name: balance
+                  type: DOUBLE
+              - column:
+                  name: user_id
+                  type: BIGINT
+
+  - changeSet:
+      id: 2024-03-26-02
+      author: shemsi
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: accounts
+            baseColumnNames: user_id
+            constraintName: fk_account_user
+            referencedTableName: user
+            referencedColumnNames: id
+            onDelete: CASCADE
+            onUpdate: RESTRICT
+
+

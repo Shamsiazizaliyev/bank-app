@@ -1,0 +1,53 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2024-03-26-01
+      author: shemsi
+      changes:
+        - createTable:
+            tableName: transactions
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: from_account_id
+                  type: BIGINT
+              - column:
+                  name: to_account_id
+                  type: BIGINT
+              - column:
+                  name: amount
+                  type: DOUBLE
+              - column:
+                  name: date
+                  type: DATE
+              - column:
+                  name: type
+                  type: VARCHAR
+  - changeSet:
+      id: 2024-03-26-02
+      author: shemsi
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: transactions
+            baseColumnNames: from_account_id
+            constraintName: fk_transactions_from_account_id
+            referencedTableName: accounts
+            referencedColumnNames: id
+            onDelete: CASCADE
+            onUpdate: CASCADE
+  - changeSet:
+      id: 2024-03-26-03
+      author: shemsi
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: transactions
+            baseColumnNames: to_account_id
+            constraintName: fk_transactions_to_account_id
+            referencedTableName: accounts
+            referencedColumnNames: id
+            onDelete: CASCADE
+            onUpdate: CASCADE

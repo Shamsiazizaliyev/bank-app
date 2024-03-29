@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2024-03-26-01
+      author: shemsi
+      changes:
+        - createTable:
+            tableName: CARD
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                  autoIncrement: true
+              - column:
+                  name: card_number
+                  type: VARCHAR
+              - column:
+                  name: card_type
+                  type: varchar
+              - column:
+                  name: expiration_date
+                  type: varchar
+              - column:
+                  name: account_id
+                  type: bigint
+        - addForeignKeyConstraint:
+            baseTableName: card
+            baseColumnNames: account_id
+            referencedTableName: accounts
+            referencedColumnNames: id
+            constraintName: fk_accounts_cards
+            onDelete: CASCADE
+            onUpdate: RESTRICT

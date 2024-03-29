@@ -1,0 +1,34 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2024-03-26-01
+      author: shemsi
+      changes:
+        - createTable:
+            tableName: addresses
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: street
+                  type: VARCHAR
+              - column:
+                  name: city
+                  type: VARCHAR
+              - column:
+                  name: postal_code
+                  type: VARCHAR
+              - column:
+                  name: user_id
+                  type: BIGINT
+        - addForeignKeyConstraint:
+            baseTableName: addresses
+            baseColumnNames: user_id
+            constraintName: fk_addresses_user_id
+            referencedTableName: user
+            referencedColumnNames: id
+            onDelete: CASCADE
+            onUpdate: CASCADE

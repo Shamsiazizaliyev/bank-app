@@ -1,0 +1,27 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2024-02-09-01
+      author: ingress
+      changes:
+        - insert:
+            tableName: card
+            columns:
+              - column:
+                  name: contract_number
+                  value: 'iba4298976'
+              - column:
+                  name: balance
+                  value: 123.00
+
+  - changeSet:
+      id: 2024-02-09-02
+      author: ingress
+      changes:
+        - sql: insert into card (contract_number, balance) values ('iba4353487598', 500.00);
+
+  - changeSet:
+      id: 2024-02-09-03
+      author: ingress
+      runOnChange: true //k
+      changes:
+        - sql: insert into card (contract_number, balance) values ('iba74353458', 900.00);

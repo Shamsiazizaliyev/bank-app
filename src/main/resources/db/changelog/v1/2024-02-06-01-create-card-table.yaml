@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2024-02-06-01
+      author: ingress
+      changes:
+        - createTable:
+            tableName: CARD
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                  autoIncrement: true
+              - column:
+                  name: card_name
+                  type: VARCHAR
+              - column:
+                  name: card_number
+                  type: VARCHAR
+              - column:
+                  name: expirationDate
+                  type: VARCHAR
+              - column:
+                  name: card_benefits
+                  type: BIGINT
+  - changeSet:
+      id: 2024-02-06-02
+      author: ingress
+      changes:
+        - renameColumn:
+            newColumnName: contract_number
+            oldColumnName: card_number
+            tableName: card
+#  - changeSet:
+#      id: addForeignKeyConstraint-example
+#      author: liquibase-docs
+#      changes:
+#        - addForeignKeyConstraint:
+#            baseTableName: card
+#            baseColumnNames: card_benefits
+#            constraintName: fk_card_card_benefit
+#            referencedTableName: card_benefit
+#            referencedColumnNames: id
+#            onDelete: CASCADE
+#            onUpdate: RESTRICT

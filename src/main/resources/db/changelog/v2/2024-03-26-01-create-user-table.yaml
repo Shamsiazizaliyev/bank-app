@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2024-03-26-01
+      author: shemsi
+      changes:
+        - createTable:
+            tableName: user
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                  autoIncrement: true
+              - column:
+                  name: username
+                  type: varchar
+                  constraints:
+                    unique: true
+              - column:
+                  name: password
+                  type: varchar

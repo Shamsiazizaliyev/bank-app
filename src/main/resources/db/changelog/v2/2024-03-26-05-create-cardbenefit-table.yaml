@@ -1,0 +1,33 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2024-03-26-01
+      author: shemsi
+      changes:
+        - createTable:
+            tableName: card_benefit
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                  autoIncrement: true
+              - column:
+                  name: name
+                  type: VARCHAR
+              - column:
+                  name: description
+                  type: VARCHAR
+              - column:
+                  name: card_id
+                  type: BIGINT
+        - addForeignKeyConstraint:
+            baseTableName: card_benefit
+            baseColumnNames: card_id
+            constraintName: fk_card_card_benefit
+            referencedTableName: card
+            referencedColumnNames: id
+            onDelete: CASCADE
+            onUpdate: RESTRICT
+
