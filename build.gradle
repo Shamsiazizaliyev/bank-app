@@ -1,3 +1,5 @@
+\
+
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.2.4'
@@ -26,8 +28,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.mapstruct:mapstruct:1.5.5.Final'
 	implementation 'org.liquibase:liquibase-core'
-	compileOnly 'org.projectlombok:lombok'
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	implementation 'org.springframework.boot:spring-boot-starter-cache'
 	runtimeOnly 'org.postgresql:postgresql'
+	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -35,4 +39,19 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+task ms22{
+	doLast {
+		println("doLast 22")
+	}
+	println("ms 22")
+}
+
+
+task ms23{
+	doLast {
+		println("doLast 23")
+	}
+	println("ms 23")
+
 }

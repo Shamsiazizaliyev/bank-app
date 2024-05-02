@@ -1,23 +1,24 @@
 package az.ingress.bankapp.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.ToString;
+import org.springframework.data.repository.cdi.Eager;
 
-@Entity
+import java.util.List;
+
 @Data
-public class CardBenefit {
+@Entity
+public class Teacher {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String description;
+
+    private String tcname;
+
 
 
     @ManyToOne
-    @JsonIgnore
-    @ToString.Exclude
-    private Card card;
+    private Add addList;
 }

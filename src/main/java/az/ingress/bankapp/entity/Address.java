@@ -1,10 +1,10 @@
 package az.ingress.bankapp.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
+
 
 
 @Entity
@@ -19,10 +19,19 @@ public class Address {
     private String city;
     private String postalCode;
 
+//    @Version
+//    private Long version;
+
     @OneToOne
     @ToString.Exclude
-    @JsonIgnore
     @JoinColumn(name = "user_id")
+
+
+
     private User user;
+
+
+
+
 
 }

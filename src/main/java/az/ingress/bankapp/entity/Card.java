@@ -2,6 +2,7 @@ package az.ingress.bankapp.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
 import lombok.*;
 import org.springframework.data.repository.cdi.Eager;
 
@@ -13,25 +14,31 @@ import java.util.Set;
 @NoArgsConstructor
 @Builder
 @Entity
+@ToString
+@Setter
+@Getter
 
 public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-
-
-
-
-
     @ManyToOne
+    @JsonIgnore
+    @ToString.Exclude
     private Account account;
-
     private String cardNumber;
     private String cardType;
     private String expirationDate;
 
-    @OneToMany(mappedBy = "card", cascade = CascadeType.ALL)
+    @Version
+    private Long versia;
+
+    @OneToMany(mappedBy = "card",fetch = FetchType.EAGER)
     private Set<CardBenefit> benefits;
+
+
+
+
+
 }
