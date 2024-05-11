@@ -6,14 +6,21 @@ import az.ingress.bankapp.entity.Account;
 import az.ingress.bankapp.repository.Are;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Random;
+
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class Addimpl {
 
 
     private final Are are;
+    private final  Addimpl2 addimpl2;
     @Transactional
     public Ac getAcc(Long id) {
         System.err.println("Begin get"+Thread.currentThread().getName());
@@ -49,4 +56,22 @@ public class Addimpl {
         return ac;
 
     }
+
+  @Transactional(propagation = Propagation.REQUIRED)
+    public Ac updateAccountWithPropagation(Long id, Double amount) {
+
+
+        log.info("method 1");
+       System.out.println("m 1 begin");
+        amount+=amount;
+      Ac ac=addimpl2.updateAccountWithPropagation(id,amount);
+      Random random=new Random();
+      boolean c=random.nextBoolean();
+      System.out.println("c= "+c);
+      if(c){
+          throw new RuntimeException(" xeta atdi");
+      }
+        return ac;
+    }
+
 }

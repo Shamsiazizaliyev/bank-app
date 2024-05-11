@@ -14,7 +14,7 @@ import java.util.Optional;
 public interface Are extends JpaRepository<Ac,Long> {
 
 
-    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Lock(LockModeType.OPTIMISTIC)
     @Override
     Optional<Ac> findById(Long aLong);
 

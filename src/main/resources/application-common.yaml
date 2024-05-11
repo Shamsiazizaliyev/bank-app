@@ -3,3 +3,7 @@ server:
     context-path: /bank-app
 
   port: 8084
+
+  springdoc:
+    swagger-ui:
+      path: /swagger-ui.html

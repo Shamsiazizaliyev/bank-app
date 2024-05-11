@@ -16,7 +16,7 @@ import java.util.Set;
 
 public interface AccountRepository extends JpaRepository<Account, Long> {
 
-    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Lock(LockModeType.OPTIMISTIC_FORCE_INCREMENT)
     @Override
     Optional<Account> findById(Long aLong);
 

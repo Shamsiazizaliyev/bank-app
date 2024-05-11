@@ -41,6 +41,7 @@ public class AccountServiceImpl implements AccountService {
 
         return accountDto;
     }
+
     @Override
     @Transactional
 
@@ -54,6 +55,7 @@ public class AccountServiceImpl implements AccountService {
         return accountDto;
 
     }
+
     @Override
     @SneakyThrows
     @Transactional
@@ -64,7 +66,10 @@ public class AccountServiceImpl implements AccountService {
         Thread.sleep(5000);
         AccountDto accountDto = accountMapper.entityToDto(account);
         System.err.println("Begin update wait"+Thread.currentThread().getName());
+
+
         return accountDto;
+
     }
 
     @Override

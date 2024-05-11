@@ -1,21 +1,45 @@
 package az.ingress.bankapp;
 
+import az.ingress.bankapp.entity.Authority;
 import az.ingress.bankapp.entity.Card;
+import az.ingress.bankapp.entity.User;
 import az.ingress.bankapp.repository.*;
 import az.ingress.bankapp.service.StudentService;
 import az.ingress.bankapp.service.impl.AccountServiceImpl;
+import io.swagger.v3.oas.annotations.ExternalDocumentation;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Contact;
+import io.swagger.v3.oas.annotations.info.Info;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 
 @SpringBootApplication
 @RequiredArgsConstructor
 @EnableCaching
+//@OpenAPIDefinition(info = @Info(
+//		title = "Bank app",
+//		description = "Bank app for Customer",
+//		contact = @Contact(
+//				name = "Shemsi",
+//				url = "https://github.com/Shamsiazizaliyev"
+//		)
+//
+//
+//),externalDocs = @ExternalDocumentation(
+//		url = "https://github.com/Shamsiazizaliyev",
+//		description = "test"
+//
+//)
+//
+//)
 public class BankAppApplication implements CommandLineRunner {
 
 
@@ -39,9 +63,11 @@ public class BankAppApplication implements CommandLineRunner {
 
 	private final StudentService studentService;
 
+	private final BCryptPasswordEncoder passwordEncoder;
 
 
-//  private final EntityManagerFactory entityManagerFactory;
+
+	//  private final EntityManagerFactory entityManagerFactory;
 //  private final CardBeniftRepo cardBeniftRepo;
 //  private final CardRepo cardRepo;
 	@Override
@@ -49,6 +75,17 @@ public class BankAppApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 
+
+//		Authority admin = new Authority();
+//		admin.setAuthority("ROLE_ADMIN");
+//
+//		User qulu = new User();
+//		qulu.setUsername("test");
+//		qulu.setPassword(passwordEncoder.encode("123"));
+//
+//		qulu.setAuthoritiess(Set.of(admin));
+//
+//		userRepository.save(qulu);
 
 
 //
