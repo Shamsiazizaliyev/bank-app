@@ -22,8 +22,8 @@ public class GlobalExceptionHandler {
         error.put("status", String.valueOf(response.getStatus()));
         error.put("message", exception.getMessage());
         error.put("path", request.getContextPath());
-        System.out.println(exception.getMessage());
-        exception.printStackTrace();
-        return ResponseEntity.status(response.getStatus()).body(error);
+        //System.out.println(exception.getMessage());
+        //exception.printStackTrace();
+        return ResponseEntity.status(345).body(error);
     }
 }

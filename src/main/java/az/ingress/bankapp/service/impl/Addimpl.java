@@ -34,10 +34,14 @@ public class Addimpl {
     @Transactional
 
     public Ac updateAccount(Long id, Double amount) {
-        System.err.println("Begin update"+Thread.currentThread().getName());
+
+        log.info("method start");
+     // if  (amount == 1) throw new RuntimeException("xeta bas verdi");
+     //   System.err.println("Begin update"+Thread.currentThread().getName());
         Ac ac = are.findById(id).orElseThrow(() -> new IllegalArgumentException());
         ac.setBalance(ac.getBalance() - amount);
-        System.err.println("Begin update"+Thread.currentThread().getName());
+     //   System.err.println("endd update"+Thread.currentThread().getName());
+        log.info("update");
         return ac;
 
     }

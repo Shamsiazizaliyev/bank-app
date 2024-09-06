@@ -13,20 +13,33 @@ import lombok.*;
 @Entity
 @Data
 @Table(name = "accounts")
-// NamedAttributeNode bu hisse hemise  1 ci eager olarq join olur gelir
-//type fetc ve load dan asli olmayarq
-//load FetchTypa baxir isliyir
-//fetc fetc kimi getirir yeni lazy
-//@NamedEntityGraph(name = "account-user", attributeNodes = {
-//        @NamedAttributeNode("user"),
-//        @NamedAttributeNode("cards"),
-//        @NamedAttributeNode(value = "cards", subgraph = "cards-subgraph")
-//},
-//        subgraphs = @NamedSubgraph(name = "cards-subgraph", attributeNodes = {
-//                @NamedAttributeNode(value = "benefits")
-//        }))
 
-//@NamedQuery(name = "test", query = "select a from Account a join fetch a.user u join fetch a.cards c join fetch c.benefits b ")
+@NamedEntityGraphs({
+        @NamedEntityGraph(
+                name = "account-user",
+                attributeNodes = {
+                        @NamedAttributeNode("user"),
+                        @NamedAttributeNode("cards"),
+                        @NamedAttributeNode(value = "user", subgraph = "user-address-subgraph"),
+                        @NamedAttributeNode(value = "cards", subgraph = "cards-benefits-subgraph")
+                },
+                subgraphs = {
+                        @NamedSubgraph(
+                                name = "user-address-subgraph",
+                                attributeNodes = {
+                                        @NamedAttributeNode("address")
+                                }
+                        ),
+                        @NamedSubgraph(
+                                name = "cards-benefits-subgraph",
+                                attributeNodes = {
+                                        @NamedAttributeNode("benefits")
+                                }
+                        )
+                }
+        )
+})
+//@NamedQuery(name = "test", query = "select a from Account a join fetch a.user u join fetch u.address add join fetch a.cards c join fetch c.benefits b ")
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,5 +54,6 @@ public class Account {
 
     @OneToMany(mappedBy = "account")
     private Set<Card> cards;
+
 
 }

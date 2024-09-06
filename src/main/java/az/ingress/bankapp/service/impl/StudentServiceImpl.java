@@ -39,7 +39,6 @@ public class StudentServiceImpl implements StudentService {
     }
 
 
-
     @Override
     public List<Student> getAllStudents(Student student) {
 
@@ -65,29 +64,35 @@ public class StudentServiceImpl implements StudentService {
 
         return studentRepository.findAll(studentSpecification);
     }
-//
+
+    //
     @Override
-    public List<Student> getStudentsAll(String name, String surname,Long age) {
+    public List<Student> getStudentsAll(String name, String surname, Long age) {
         Specification<Student> studentSpecification = null;
 
-//            if (name != null) {
-//                studentSpecification = (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("name"),name);
+//        if (name != null) {
+//            studentSpecification = (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("name"), name);
 //
-//            }
-//
+//        }
+
 //        Specification<Student> studentSpecification2 = new Specification<Student>() {
 //            @Override
 //            public Predicate toPredicate(Root<Student> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+//
+//               // return criteriaBuilder.equal(root.get("name"), name);
 //                return criteriaBuilder.like(root.get("name"),"%"+ name + "%");
 //            }
 //        };
+
         studentSpecification = (root, cq, cb) -> {
+
 
             List<Predicate> predicateList = new ArrayList<>();
 
             if (name != null) {
                 predicateList.add(cb.equal(root.get("name"),name));
             }
+
 
             if (surname!= null) {
                 predicateList.add(cb.equal(root.get("surname"), surname));
@@ -97,15 +102,14 @@ public class StudentServiceImpl implements StudentService {
                 predicateList.add(cb.greaterThan(root.get("age"), age));
             }
 
-            //predicateList.toArray(new Predicate[0]);
+            predicateList.toArray(new Predicate[0]);
             cq.where(cb.and(predicateList.toArray(new Predicate[0])));
             return cq.getRestriction();
 
         };
-        return studentRepository.findAll(studentSpecification);
+       return studentRepository.findAll(studentSpecification);
 
     }
-
     @Override
     public List<Student> getStudents(String name, String surname, Long age, String gender) {
         return studentRepository.getStudnets(name,surname, age,gender);
@@ -115,7 +119,9 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<Student> findAllStudents(List<SearchCriteria> searchCriteriaList) {
         StudentSpecification studentSpecification = new StudentSpecification();
+
         searchCriteriaList.forEach(searchCriteria -> studentSpecification.add(searchCriteria));
+
         return studentRepository.findAll(studentSpecification);
 
     }

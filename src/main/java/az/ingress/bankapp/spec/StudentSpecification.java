@@ -17,11 +17,14 @@ public class StudentSpecification implements Specification<Student> {
     private List<SearchCriteria> list;
 
     public StudentSpecification() {
+
         this.list = new ArrayList<>();
     }
 
     public void add(SearchCriteria criteria) {
+
         list.add(criteria);
+
     }
 
     @Override

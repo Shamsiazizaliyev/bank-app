@@ -1,6 +1,7 @@
 package az.ingress.bankapp.controller;
 
 
+import az.ingress.bankapp.aop.CheckParam;
 import az.ingress.bankapp.dto.AccountDto;
 import az.ingress.bankapp.entity.Ac;
 import az.ingress.bankapp.entity.Account;
@@ -24,6 +25,9 @@ import java.util.List;
 @Tag(name = "Account Controllerr",description = "This controller managed  account" )
 @Slf4j
 public class AccountController {
+
+
+
     private final AccountService accountService;
     private final Addimpl service;
 
@@ -78,6 +82,19 @@ public class AccountController {
     @PostMapping("/security")
     public String postPublic() {
         return "post public method";
+    }
+
+    @PostMapping("/securityy")
+    public String postPublicc() {
+        return "post public methody";
+    }
+
+
+    @PostMapping("/test")
+   // @CheckParam(value = "test")
+    public String postTest()
+    {
+        return "test annotation";
     }
 
 }

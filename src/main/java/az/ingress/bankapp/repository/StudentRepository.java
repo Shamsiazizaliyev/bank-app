@@ -17,7 +17,7 @@ public interface StudentRepository extends JpaRepository<Student, Long>, JpaSpec
 
     Optional<Student> findBySurname(String surname);
 
-   Optional<List<Student>> findByNameAndSurnameAndAgeAndGender(String name, String surname, int age, String gender);
+   Optional<List<Student>> findByNameOrSurname(String name, String surname);
 //
 
     @Query("select s from Student s where (:name is null or s.name=:name) " +

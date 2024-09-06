@@ -35,7 +35,7 @@ public class Card {
     private Long versia;
 
     @OneToMany(mappedBy = "card",fetch = FetchType.EAGER)
-    private Set<CardBenefit> benefits;
+    private List<CardBenefit> benefits;
 
 
 

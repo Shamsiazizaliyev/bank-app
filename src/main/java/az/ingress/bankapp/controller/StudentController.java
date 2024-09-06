@@ -32,7 +32,7 @@ public class StudentController {
     private  final CacheManager cacheManager;
    // private  final RedisTemplate<String,Object> redisTemplate;
 
-    @Cacheable(cacheNames = "student",key="#name.length()")
+   /// @Cacheable(cacheNames = "student",key="#name.length()")
     @GetMapping("/student/{name}")
 
     public Student getStudent(@PathVariable String name) {
@@ -71,8 +71,9 @@ public class StudentController {
     }
 
 
-    @PostMapping("/student")
+    @PostMapping("/studentt")
     public ResponseEntity<List<Student>> findAllStudents(@RequestBody List<SearchCriteria> searchCriteriaList) {
+        System.out.println("salama sss");
         return ResponseEntity.ok(studentService.findAllStudents(searchCriteriaList));
     }
 

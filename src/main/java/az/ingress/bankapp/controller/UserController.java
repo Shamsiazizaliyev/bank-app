@@ -15,7 +15,6 @@ public class UserController {
 
     private final UserService userService;
 
-
     @GetMapping("/test")
     public String test(){
         return "salam";
@@ -25,6 +24,7 @@ public class UserController {
     public ResponseEntity<User> getUser(@PathVariable Long id) {
 
         return ResponseEntity.ok(userService.getUser(id));
+
     }
 
 }

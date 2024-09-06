@@ -1,8 +1,7 @@
 package az.ingress.bankapp;
 
-import az.ingress.bankapp.entity.Authority;
 import az.ingress.bankapp.entity.Card;
-import az.ingress.bankapp.entity.User;
+import az.ingress.bankapp.entity.Student;
 import az.ingress.bankapp.repository.*;
 import az.ingress.bankapp.service.StudentService;
 import az.ingress.bankapp.service.impl.AccountServiceImpl;
@@ -15,6 +14,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +25,8 @@ import java.util.Set;
 @SpringBootApplication
 @RequiredArgsConstructor
 @EnableCaching
+@EnableFeignClients
+@EnableAspectJAutoProxy
 //@OpenAPIDefinition(info = @Info(
 //		title = "Bank app",
 //		description = "Bank app for Customer",
@@ -63,7 +66,7 @@ public class BankAppApplication implements CommandLineRunner {
 
 	private final StudentService studentService;
 
-	private final BCryptPasswordEncoder passwordEncoder;
+//	private final BCryptPasswordEncoder passwordEncoder;
 
 
 
@@ -71,10 +74,16 @@ public class BankAppApplication implements CommandLineRunner {
 //  private final CardBeniftRepo cardBeniftRepo;
 //  private final CardRepo cardRepo;
 	@Override
-    @Transactional
+
 	public void run(String... args) throws Exception {
 
 
+
+
+
+		System.out.println("salam");
+		//System.out.println(accountRepository.findByCustom());
+	//	accountRepository.findByAccountNumber("iba455").forEach(System.out::println);
 
 //		Authority admin = new Authority();
 //		admin.setAuthority("ROLE_ADMIN");
@@ -128,31 +137,33 @@ public class BankAppApplication implements CommandLineRunner {
 //		entityManager.persist(card);
 //		entityManagerFactory.close();
 
-//		Student qulu = Student.builder()
-//				.name("Qulu")
-//				.surname("Bedelov")
-//				.age(20)
-//				.gender("M")
-//				.build();
-//		Student mehemmed = Student.builder()
-//				.name("Mehemmed")
-//				.surname("Ilyazov")
-//				.age(20)
-//				.gender("M")
-//				.build();
-//		Student esref = Student.builder()
-//				.name("Esref")
-//				.surname("Sukurlu")
-//				.age(20)
-//				.gender("M")
-//				.build();
+		Student qulu = Student.builder()
+				.name("Qulu")
+				.surname("Bedelov")
+				.age(20)
+				.gender("M")
+				.build();
+		Student mehemmed = Student.builder()
+				.name("Mehemmed")
+				.surname("Ilyazov")
+				.age(20)
+				.gender("M")
+				.build();
+		Student esref = Student.builder()
+				.name("Esref")
+				.surname("Sukurlu")
+				.age(20)
+				.gender("M")
+				.build();
 //		List<Student> students = List.of(qulu, mehemmed, esref);// deyismek olmur sonra List.of methodud
 //		for (Student student : students) {
-//        // studentService.saveStudent(student);
+//         studentService.saveStudent(student);
 //		}
 
-		//List<Student> allStudents = studentService.getStudentsAll("Qulu","Bedelov",72L);
-// allStudents.forEach(System.out::println);
+//		List<Student> allStudents = studentService.getStudentsAll("Qulu",null,null);
+//        allStudents.forEach(System.out::println);
+
+		//System.out.println(studentRepository.findByNameAndSurnameAndAge("Qulu",null,20));
 	//	System.out.println(studentRepository.getStudnets());
 
 	//	List<Student> list = studentService.getStudentsAll("Qulu", "Bedelov", 20L, null);
@@ -180,8 +191,8 @@ public class BankAppApplication implements CommandLineRunner {
 		//System.out.println(accountRepository.findAllCustom());
 
 		//System.out.println(studentService.getStudentsAll("Qulu","Bedellov",26L));
-		//System.out.println(studentRepository.findByNameAndSurnameAndAgeAndGender(null,"Bedelov",25,"M"));
-	//System.out.println(studentService.getStudents(null,"Bedelov",25L,"M"));
+	//	System.out.println(studentRepository.findByNameOrSurname(null,null));
+	//System.out.println(studentService.getStudents("Qulu","Bedelov",null,"M"));
 
 	}
 
@@ -196,6 +207,7 @@ public class BankAppApplication implements CommandLineRunner {
 //
 //
 //
+
 
 
 }
